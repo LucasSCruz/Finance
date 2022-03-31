@@ -32,7 +32,7 @@ namespace WebFinance.Controllers
         {
             _dataContext = new DataContext();
 
-            _dataContext.Pessoas.Add(pessoa);
+            _dataContext.Pessoa.Add(pessoa);
             await _dataContext.SaveChangesAsync();
 
             return Created("Objeto pessoa", pessoa) ;
@@ -43,7 +43,7 @@ namespace WebFinance.Controllers
         {
             _dataContext = new DataContext();
 
-            _dataContext.Pessoas.Update(pessoa);
+            _dataContext.Pessoa.Update(pessoa);
             await _dataContext.SaveChangesAsync();
 
             return Ok("Updated!");
@@ -59,7 +59,7 @@ namespace WebFinance.Controllers
                 return BadRequest("Not found!");
             }
 
-            _dataContext.Pessoas.Remove(pessoa);
+            _dataContext.Pessoa.Remove(pessoa);
             await _dataContext.SaveChangesAsync();
 
             return Ok("Deleted!");

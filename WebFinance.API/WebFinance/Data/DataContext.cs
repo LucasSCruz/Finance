@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using WebFinance.Models;
 
 namespace WebFinance.Data
@@ -27,16 +26,16 @@ namespace WebFinance.Data
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        {   
             base.OnModelCreating(modelBuilder);
         }
-        public DbSet<Pessoa> Pessoas { get; set; }
+        public DbSet<Pessoa> Pessoa { get; set; }
 
-        public DbSet<Financa> Financas { get; set; }
+        public DbSet<Financa> Financa { get; set; }
 
         public IEnumerable<Pessoa> GetPessoas()
         {
-            return Pessoas;
+            return Pessoa;
         }
     }
 }
