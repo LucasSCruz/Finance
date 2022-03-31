@@ -38,16 +38,5 @@ namespace WebFinance.Data
         {
             return Pessoas;
         }
-
-        public void CreatePessoas(Pessoa pessoa)
-        {
-            if(pessoa == null)
-            {
-                throw new ArgumentNullException("Não tem dados para cadastro");
-            }
-
-            _context.Pessoas.Add(pessoa);
-
-        }
     }
 }

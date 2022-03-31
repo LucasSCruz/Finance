@@ -1,10 +1,6 @@
-using System;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using WebFinance.Data;
 using WebFinance.Models;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
 
 namespace WebFinance.Controllers
 {
@@ -20,8 +16,8 @@ namespace WebFinance.Controllers
             _dataContext = context;
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<Pessoa>> pessoa()
+        [HttpGet("api/getpessoa")]
+        public ActionResult<IEnumerable<Pessoa>> GetPessoa()
         {
             _dataContext = new DataContext();
 
@@ -40,6 +36,34 @@ namespace WebFinance.Controllers
             await _dataContext.SaveChangesAsync();
 
             return Created("Objeto pessoa", pessoa) ;
+        }
+
+        [HttpPut("api/atualizapessoa")]
+        public async Task<ActionResult> Atualiza([FromBody] Pessoa pessoa)
+        {
+            _dataContext = new DataContext();
+
+            _dataContext.Pessoas.Update(pessoa);
+            await _dataContext.SaveChangesAsync();
+
+            return Ok("Updated!");
+        }
+
+        [HttpDelete("api/deletepessoa")]
+        public async Task<ActionResult> Delete([FromBody] Pessoa pessoa)
+        {
+            _dataContext = new DataContext();
+
+            if(pessoa == null)
+            {
+                return BadRequest("Not found!");
+            }
+
+            _dataContext.Pessoas.Remove(pessoa);
+            await _dataContext.SaveChangesAsync();
+
+            return Ok("Deleted!");
+
         }
     }
 }
