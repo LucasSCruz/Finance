@@ -33,6 +33,7 @@ namespace WebFinance.Data
         public DbSet<Pessoa> Pessoa { get; set; }
 
         public DbSet<Financa> Financa { get; set; }
+        public DbSet<Conta> Conta { get; set; }
 
         public IEnumerable<Pessoa> GetPessoas()
         {
@@ -42,6 +43,11 @@ namespace WebFinance.Data
         public IEnumerable<Financa> GetFinanca()
         {
             return Financa;
+        }
+
+        public IEnumerable<Conta> GetConta()
+        {
+            return Conta;
         }
     }
 }

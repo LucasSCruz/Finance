@@ -22,6 +22,26 @@ namespace WebFinance.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("WebFinance.Models.Conta", b =>
+                {
+                    b.Property<int>("IdConta")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdConta"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Tipo")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdConta");
+
+                    b.ToTable("Conta");
+                });
+
             modelBuilder.Entity("WebFinance.Models.Financa", b =>
                 {
                     b.Property<int>("Id")

@@ -12,7 +12,7 @@ using WebFinance.Data;
 namespace WebFinance.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220401122520_InitialCreate")]
+    [Migration("20220401132945_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,26 @@ namespace WebFinance.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("WebFinance.Models.Conta", b =>
+                {
+                    b.Property<int>("IdConta")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdConta"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Tipo")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdConta");
+
+                    b.ToTable("Conta");
+                });
 
             modelBuilder.Entity("WebFinance.Models.Financa", b =>
                 {

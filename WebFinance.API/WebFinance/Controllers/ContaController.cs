@@ -2,11 +2,12 @@
 using WebFinance.Data;
 using WebFinance.Models;
 
+
 namespace WebFinance.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class FinancaController : ControllerBase
+    public class ContaController : ControllerBase
     {
         private DataContext? _dataContext;
 
@@ -15,55 +16,54 @@ namespace WebFinance.Controllers
             _dataContext = context;
         }
 
-        [HttpGet("api/getfinanca")]
-        public ActionResult<IEnumerable<Financa>> GetResult()
+        [HttpGet("api/getconta")]
+        public ActionResult<IEnumerable<Conta>> GetResult()
         {
             _dataContext = new DataContext();
 
-            var data = _dataContext.GetFinanca();
+            var conta = _dataContext.GetConta();
 
-            return data.ToList();
+            return conta.ToList();
         }
 
-        [HttpPost("api/postfinanca")]
-        public async Task<ActionResult<IEnumerable<Financa>>> InsertFinanca(Financa financa)
+        [HttpPost("api/postconta")]
+        public async Task<ActionResult> InsertConta([FromBody] Conta conta)
         {
             _dataContext = new DataContext();
 
-            _dataContext.Financa.Add(financa);
+            _dataContext.Conta.Add(conta);
             await _dataContext.SaveChangesAsync();
 
-            return Created("Objeto financa", financa);
-
+            return Created("Objeto conta", conta);
         }
 
-        [HttpPut("api/putfinanca")]
-        public async Task<ActionResult<IEnumerable<Financa>>> UpdateFinanca(Financa financa)
+        [HttpPut("api/putconta")]
+        public async Task<ActionResult> UpdateConta([FromBody] Conta conta)
         {
             _dataContext = new DataContext();
 
-            if (financa == null)
+            if (conta == null)
             {
                 return BadRequest("Not found!");
             }
 
-            _dataContext.Financa.Update(financa);
+            _dataContext.Conta.Update(conta);
             await _dataContext.SaveChangesAsync();
 
             return Ok("Updated!");
         }
 
-        [HttpDelete("api/deletefinanca")]
-        public async Task<ActionResult> Delete([FromBody] Financa financa)
+        [HttpDelete("api/deleteconta")]
+        public async Task<ActionResult> DeleteConta([FromBody] Conta conta)
         {
             _dataContext = new DataContext();
 
-            if (financa == null)
+            if (conta == null)
             {
                 return BadRequest("Not found!");
             }
 
-            _dataContext.Financa.Remove(financa);
+            _dataContext.Conta.Remove(conta);
             await _dataContext.SaveChangesAsync();
 
             return Ok("Deleted!");

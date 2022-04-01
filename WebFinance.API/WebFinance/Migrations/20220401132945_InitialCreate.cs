@@ -10,6 +10,20 @@ namespace WebFinance.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Conta",
+                columns: table => new
+                {
+                    IdConta = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Tipo = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Conta", x => x.IdConta);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Financa",
                 columns: table => new
                 {
@@ -43,6 +57,9 @@ namespace WebFinance.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Conta");
+
             migrationBuilder.DropTable(
                 name: "Financa");
 

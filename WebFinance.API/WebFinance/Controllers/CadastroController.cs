@@ -43,6 +43,11 @@ namespace WebFinance.Controllers
         {
             _dataContext = new DataContext();
 
+            if (pessoa == null)
+            {
+                return BadRequest("Not found!");
+            }
+
             _dataContext.Pessoa.Update(pessoa);
             await _dataContext.SaveChangesAsync();
 
