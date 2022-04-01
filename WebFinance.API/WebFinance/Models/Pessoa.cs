@@ -1,11 +1,13 @@
-﻿namespace WebFinance.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WebFinance.Models
 {
     public class Pessoa
     {
-        public int Id { get; set; }
-        public string Codigo { get; set; }
+        [Key]
+        public int IdPessoa { get; set; }
+        [Required]
         public string Nome { get; set; }
-        public DateTime DataCriacao { get; set; }
 
     }
 }

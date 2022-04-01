@@ -7,15 +7,16 @@ namespace WebFinance.Data
     {
         private readonly DataContext _context;
 
+        public DataContext()
+        {
+        }
+
+
         public DataContext(DataContext context)
         {
             _context = context;
         }
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
-
-        public DataContext()
-        {
-        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
@@ -36,6 +37,11 @@ namespace WebFinance.Data
         public IEnumerable<Pessoa> GetPessoas()
         {
             return Pessoa;
+        }
+
+        public IEnumerable<Financa> GetFinanca()
+        {
+            return Financa;
         }
     }
 }

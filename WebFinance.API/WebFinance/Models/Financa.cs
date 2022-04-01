@@ -6,17 +6,18 @@ namespace WebFinance.Models
     public class Financa
     {
         [Key]
-        public int Id { get; set; }
+        public int Id { get; set; } 
         [Required]
-        public int Conta { get; set; }
+        [ForeignKey("IdConta")]
+        public int IdConta { get; set; }
         [Required]
-        public string TipoMovimentacao { get; set; }
+        public string? TipoMovimentacao { get; set; }
         [Required]
         public int Valor { get; set; }
         [Required]
         public DateTime DataCompra { get; set; }
         [Required]
-        [ForeignKey("id")]
+        [ForeignKey("idPessoa")]
         public int idPessoa { get; set; }
         public DateTime DataCriacao { get; set; }
     }
