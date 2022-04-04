@@ -12,8 +12,8 @@ using WebFinance.Data;
 namespace WebFinance.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220401132945_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220404124949_FistMigration")]
+    partial class FistMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,26 +52,29 @@ namespace WebFinance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("Conta")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DataCompra")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DataCriacao")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("IdConta")
+                    b.Property<int>("Pessoa")
                         .HasColumnType("int");
 
                     b.Property<string>("TipoMovimentacao")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Valor")
                         .HasColumnType("int");
 
-                    b.Property<int>("idPessoa")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("Conta");
+
+                    b.HasIndex("Pessoa");
 
                     b.ToTable("Financa");
                 });
@@ -91,6 +94,25 @@ namespace WebFinance.Migrations
                     b.HasKey("IdPessoa");
 
                     b.ToTable("Pessoa");
+                });
+
+            modelBuilder.Entity("WebFinance.Models.Financa", b =>
+                {
+                    b.HasOne("WebFinance.Models.Conta", "IdConta")
+                        .WithMany()
+                        .HasForeignKey("Conta")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebFinance.Models.Pessoa", "idPessoa")
+                        .WithMany()
+                        .HasForeignKey("Pessoa")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("IdConta");
+
+                    b.Navigation("idPessoa");
                 });
 #pragma warning restore 612, 618
         }
