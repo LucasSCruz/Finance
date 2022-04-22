@@ -6,7 +6,7 @@ namespace WebFinance.Models
     {
         [Key]
         public int IdPessoa { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Necessário inserir o nome")]
         public string Nome { get; set; }
 
     }

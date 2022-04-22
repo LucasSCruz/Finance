@@ -9,7 +9,7 @@ namespace WebFinance.Controllers
     public class CadastroController : ControllerBase
     {
         
-        private DataContext _dataContext;
+        private DataContext? _dataContext;
 
         public void PessoaController(DataContext context)
         {

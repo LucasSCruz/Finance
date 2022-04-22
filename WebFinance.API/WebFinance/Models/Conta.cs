@@ -6,9 +6,9 @@ namespace WebFinance.Models
     {
         [Key]
         public int IdConta { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Necessário inserir um nome a conta")]
         public string Name { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Necessário inserir um tipo a conta")]
         public int Tipo { get; set; }
     }
 }
